@@ -3,53 +3,302 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InstaMini</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: #f5f5f5;
-      color: #222;
+      background: #fafafa;
+      color: #262626;
       font-family: Arial, sans-serif;
     }
     header {
       background: white;
-      color: #d62976;
-      padding: 18px;
-      font-size: 26px;
+      border-bottom: 1px solid #ddd;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    .logo {
+      font-size: 27px;
       font-weight: bold;
-    }
-    main {
-      max-width: 450px;
-      margin: 25px auto;
-      padding: 16px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 14px;
-      box-shadow: 0 2px 10px #00000010;
+      letter-spacing: -1px;
+      background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf);
+      color: transparent;
+      background-clip: text;
     }
     button {
-      background: #d62976;
-      color: white;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 8px;
+      border: 0;
+      cursor: pointer;
+      font-size: 15px;
     }
+    .new-post {
+      background: #0095f6;
+      color: white;
+      padding: 9px 13px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    main { max-width: 480px; margin: 18px auto; padding: 0 12px 80px; }
+    .stories {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 14px 10px;
+      margin-bottom: 18px;
+    }
+    .story { text-align: center; min-width: 62px; font-size: 12px; }
+    .avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 23px;
+      margin: 0 auto 6px;
+      background: linear-gradient(45deg, #feda75, #d62976, #962fbf);
+      padding: 3px;
+    }
+    .avatar span {
+      background: #555;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 2px solid white;
+    }
+    .post {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .post-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      font-weight: bold;
+    }
+    .small-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(45deg, #feda75, #d62976, #962fbf);
+      color: white;
+    }
+    .photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      background: #eee;
+    }
+    .post-actions { padding: 10px 12px 0; display: flex; gap: 16px; }
+    .action { background: none; font-size: 27px; padding: 0; }
+    .liked { color: #ed4956; }
+    .post-info { padding: 8px 12px 14px; font-size: 14px; }
+    .caption { margin-top: 7px; line-height: 1.5; }
+    .muted { color: #888; font-size: 12px; margin-top: 8px; }
+    .profile {
+      background: white;
+      border: 1px solid #eee;
+      padding: 18px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+    .profile h2 { margin: 0 0 6px; }
+    .follow {
+      background: #0095f6;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 7px;
+      margin-top: 12px;
+    }
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 5px;
+      z-index: 3;
+    }
+    nav button { background: none; font-size: 24px; }
+    .notice { text-align: center; color: #777; font-size: 12px; margin: 18px 0; }
   </style>
 </head>
 <body>
-  <header>📸 InstaMini</header>
+  <header>
+    <div class="logo">InstaMini</div>
+    <button class="new-post" onclick="createPost()">＋ Post</button>
+  </header>
+
   <main>
-    <section class="card">
-      <h2>Welcome to InstaMini!</h2>
-      <p>Your own social media mini website.</p>
-      <p>We're building this step by step.</p>
-      <button onclick="alert('Your website is working!')">
-        Test my website
-      </button>
+    <section class="stories">
+      <div class="story"><div class="avatar"><span>＋</span></div>Your story</div>
+      <div class="story"><div class="avatar"><span>🌸</span></div>Amaka</div>
+      <div class="story"><div class="avatar"><span>😎</span></div>David</div>
+      <div class="story"><div class="avatar"><span>🎨</span></div>Zara</div>
+      <div class="story"><div class="avatar"><span>🌍</span></div>Tunde</div>
     </section>
+
+    <section class="profile">
+      <h2>👋 Welcome to InstaMini!</h2>
+      <div class="muted">Your little corner of the social world.</div>
+      <button class="follow" id="followBtn" onclick="toggleFollow()">Follow InstaMini</button>
+      <div class="muted" id="followCount">0 following</div>
+    </section>
+
+    <section id="feed">
+      <article class="post">
+        <div class="post-head">
+          <div class="small-avatar">🌴</div>
+          <span>travel_diary</span>
+        </div>
+        <img class="photo"
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700"
+          alt="Beautiful tropical beach">
+        <div class="post-actions">
+          <button class="action" onclick="toggleLike(this)" aria-label="Like">♡</button>
+          <button class="action" onclick="commentPost()" aria-label="Comment">♧</button>
+          <button class="action" onclick="sharePost()" aria-label="Share">↗</button>
+        </div>
+        <div class="post-info">
+          <strong class="likes">12 likes</strong>
+          <div class="caption"><b>travel_diary</b> A little sunshine makes everything better ☀️🌊</div>
+          <div class="muted">Sample post · 2 hours ago</div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="post-head">
+          <div class="small-avatar">☕</div>
+          <span>daily_moments</span>
+        </div>
+        <img class="photo"
+          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700"
+          alt="Coffee on a table">
+        <div class="post-actions">
+          <button class="action" onclick="toggleLike(this)" aria-label="Like">♡</button>
+          <button class="action" onclick="commentPost()" aria-label="Comment">♧</button>
+          <button class="action" onclick="sharePost()" aria-label="Share">↗</button>
+        </div>
+        <div class="post-info">
+          <strong class="likes">8 likes</strong>
+          <div class="caption"><b>daily_moments</b> Slow mornings and good coffee. ☕</div>
+          <div class="muted">Sample post · 5 hours ago</div>
+        </div>
+      </article>
+    </section>
+
+    <div class="notice">You're all caught up ✨</div>
   </main>
+
+  <nav>
+    <button onclick="goHome()" aria-label="Home">⌂</button>
+    <button onclick="searchPeople()" aria-label="Search">⌕</button>
+    <button onclick="createPost()" aria-label="Create post">⊕</button>
+    <button onclick="showMessages()" aria-label="Messages">♡</button>
+    <button onclick="showProfile()" aria-label="Profile">☺</button>
+  </nav>
+
+  <script>
+    function toggleLike(button) {
+      const post = button.closest(".post");
+      const count = post.querySelector(".likes");
+      let likes = Number(count.dataset.count || parseInt(count.textContent) || 0);
+
+      if (button.classList.contains("liked")) {
+        likes--;
+        button.classList.remove("liked");
+        button.textContent = "♡";
+      } else {
+        likes++;
+        button.classList.add("liked");
+        button.textContent = "♥";
+      }
+
+      count.dataset.count = likes;
+      count.textContent = likes + (likes === 1 ? " like" : " likes");
+    }
+
+    let following = false;
+
+    function toggleFollow() {
+      following = !following;
+      document.getElementById("followBtn").textContent =
+        following ? "Following ✓" : "Follow InstaMini";
+      document.getElementById("followCount").textContent =
+        following ? "1 following" : "0 following";
+    }
+
+    function createPost() {
+      const caption = prompt("What would you like to post?");
+      if (!caption || !caption.trim()) return;
+
+      const post = document.createElement("article");
+      post.className = "post";
+      post.innerHTML = `
+        <div class="post-head">
+          <div class="small-avatar">😊</div><span>you</span>
+        </div>
+        <div class="post-info">
+          <div class="caption"></div>
+        </div>`;
+      post.querySelector(".caption").textContent = caption.trim();
+      document.getElementById("feed").prepend(post);
+    }
+
+    function commentPost() {
+      const comment = prompt("Write a comment:");
+      if (comment && comment.trim()) alert("Demo comment: " + comment);
+    }
+
+    function sharePost() {
+      if (navigator.share) {
+        navigator.share({
+          title: "InstaMini",
+          text: "Check out InstaMini!",
+          url: location.href
+        }).catch(() => {});
+      } else {
+        alert("Your InstaMini page link: " + location.href);
+      }
+    }
+
+    function goHome() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function searchPeople() {
+      const name = prompt("Search for a person:");
+      if (name) alert("Search feature will be connected in a future update.");
+    }
+
+    function showMessages() {
+      alert("Messaging will be added in a future update.");
+    }
+
+    function showProfile() {
+      alert("Your profile feature is coming soon!");
+    }
+  </script>
 </body>
 </html>
